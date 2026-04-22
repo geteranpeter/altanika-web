@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function HomePage() {
   const services = [
     {
@@ -27,7 +31,45 @@ export default function HomePage() {
   ];
 
   return (
-    <main style={{ padding: "60px" }}>
+    <main
+      style={{
+        padding: "60px",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <motion.div
+        animate={{ y: [0, -30, 0] }}
+        transition={{ duration: 12, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          top: "-200px",
+          left: "-200px",
+          width: "600px",
+          height: "600px",
+          borderRadius: "50%",
+          background: "rgba(79,125,58,0.15)",
+          filter: "blur(120px)",
+          zIndex: 0,
+        }}
+      />
+
+      <motion.div
+        animate={{ y: [0, 40, 0] }}
+        transition={{ duration: 14, repeat: Infinity }}
+        style={{
+          position: "absolute",
+          bottom: "-200px",
+          right: "-200px",
+          width: "600px",
+          height: "600px",
+          borderRadius: "50%",
+          background: "rgba(212,175,55,0.12)",
+          filter: "blur(120px)",
+          zIndex: 0,
+        }}
+      />
+
       <section
         style={{
           maxWidth: "1200px",
@@ -36,6 +78,8 @@ export default function HomePage() {
           gridTemplateColumns: "1.1fr 0.9fr",
           gap: "40px",
           alignItems: "center",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <div>
@@ -55,7 +99,10 @@ export default function HomePage() {
             Luxusný exteriér • návrh • realizácia • servis
           </div>
 
-          <h1
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             style={{
               fontSize: "72px",
               lineHeight: "0.95",
@@ -70,9 +117,12 @@ export default function HomePage() {
             <span style={{ color: "#4f7d3a" }}>
               navrhnuté s citom pre priestor.
             </span>
-          </h1>
+          </motion.h1>
 
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             style={{
               fontSize: "20px",
               lineHeight: "1.8",
@@ -83,9 +133,14 @@ export default function HomePage() {
             Altanika s.r.o. prepája záhradný dizajn, vizualizácie, realizácie,
             údržbu, čistenie exteriérov aj remeselné prvky do jedného
             konzistentného celku.
-          </p>
+          </motion.p>
 
-          <div style={{ display: "flex", gap: "16px", marginTop: "30px" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            style={{ display: "flex", gap: "16px", marginTop: "30px" }}
+          >
             <button
               style={{
                 background: "#0f172a",
@@ -113,10 +168,13 @@ export default function HomePage() {
             >
               Získať návrh
             </button>
-          </div>
+          </motion.div>
         </div>
 
-        <div
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.9 }}
           style={{
             height: "560px",
             borderRadius: "36px",
@@ -132,6 +190,8 @@ export default function HomePage() {
         style={{
           maxWidth: "1200px",
           margin: "80px auto 0 auto",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <div
@@ -185,8 +245,10 @@ export default function HomePage() {
           }}
         >
           {services.map((service) => (
-            <div
+            <motion.div
               key={service.title}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.2 }}
               style={{
                 background: "white",
                 border: "1px solid rgba(0,0,0,0.06)",
@@ -227,7 +289,7 @@ export default function HomePage() {
               >
                 {service.text}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -239,6 +301,8 @@ export default function HomePage() {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "24px",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <div
