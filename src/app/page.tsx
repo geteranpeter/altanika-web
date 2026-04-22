@@ -2,392 +2,634 @@
 
 import { motion } from "framer-motion";
 
+const services = [
+  {
+    title: "Záhradný dizajn",
+    text: "Navrhujeme záhrady a exteriéry s jasnou kompozíciou, atmosférou a dlhodobou funkčnosťou.",
+    image: "/altanika-assets/service-garden.jpg",
+  },
+  {
+    title: "Vizualizácie",
+    text: "Klient vidí budúci priestor ešte pred realizáciou a získava istotu pri rozhodovaní.",
+    image: "/altanika-assets/service-visualization.jpg",
+  },
+  {
+    title: "Realizácie",
+    text: "Od prípravy terénu až po finálny detail. Všetko pod jednou strechou.",
+    image: "/altanika-assets/service-realization.jpg",
+  },
+  {
+    title: "Údržba",
+    text: "Udržiavame hotové priestory v kondícii, aby si zachovali úroveň aj funkčnosť.",
+    image: "/altanika-assets/service-maintenance.jpg",
+  },
+  {
+    title: "Čistenie exteriérov",
+    text: "Čistíme dlažby, fasády, strechy aj solárne a fotovoltické panely.",
+    image: "/altanika-assets/service-cleaning.jpg",
+  },
+  {
+    title: "Terasy a stavby",
+    text: "Tvoríme altánky, terasy, vírivky, ohniská a remeselné prvky priestoru.",
+    image: "/altanika-assets/service-builds.jpg",
+  },
+];
+
+const gallery = [
+  "/altanika-assets/gallery-1.jpg",
+  "/altanika-assets/gallery-2.jpg",
+  "/altanika-assets/gallery-3.jpg",
+  "/altanika-assets/gallery-4.jpg",
+  "/altanika-assets/gallery-5.jpg",
+];
+
+const features = [
+  {
+    title: "Komplexné služby",
+    text: "Všetko pod jednou strechou",
+  },
+  {
+    title: "Prémiový dizajn",
+    text: "Estetika, funkčnosť, detail",
+  },
+  {
+    title: "Dlhodobá starostlivosť",
+    text: "Údržba, servis, čistenie",
+  },
+];
+
+const companyPoints = [
+  "Viac ako 7 rokov skúseností",
+  "Stovky úspešných projektov",
+  "Individuálny prístup ku každému klientovi",
+  "Používame prémiové materiály a technológie",
+];
+
 export default function HomePage() {
-  const services = [
-    {
-      title: "Záhradný dizajn",
-      text: "Navrhujeme záhrady a exteriéry s jasnou kompozíciou, atmosférou a dlhodobou funkčnosťou.",
-    },
-    {
-      title: "Vizualizácie",
-      text: "Klient vidí budúci priestor ešte pred realizáciou a získava istotu pri rozhodovaní.",
-    },
-    {
-      title: "Realizácie",
-      text: "Od prípravy terénu až po finálny detail. Všetko pod jednou strechou.",
-    },
-    {
-      title: "Údržba",
-      text: "Udržiavame hotové priestory v kondícii, aby si zachovali úroveň aj funkčnosť.",
-    },
-    {
-      title: "Čistenie exteriérov",
-      text: "Čistíme dlažby, fasády, strechy aj solárne a fotovoltické panely.",
-    },
-    {
-      title: "Terasy a stavby",
-      text: "Tvoríme altánky, terasy, vírivky, ohniská a remeselné prvky priestoru.",
-    },
-  ];
-
   return (
-    <main
-      style={{
-        padding: "60px",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <motion.div
-        animate={{ y: [0, -30, 0] }}
-        transition={{ duration: 12, repeat: Infinity }}
-        style={{
-          position: "absolute",
-          top: "-200px",
-          left: "-200px",
-          width: "600px",
-          height: "600px",
-          borderRadius: "50%",
-          background: "rgba(79,125,58,0.15)",
-          filter: "blur(120px)",
-          zIndex: 0,
-        }}
-      />
-
-      <motion.div
-        animate={{ y: [0, 40, 0] }}
-        transition={{ duration: 14, repeat: Infinity }}
-        style={{
-          position: "absolute",
-          bottom: "-200px",
-          right: "-200px",
-          width: "600px",
-          height: "600px",
-          borderRadius: "50%",
-          background: "rgba(212,175,55,0.12)",
-          filter: "blur(120px)",
-          zIndex: 0,
-        }}
-      />
-
+    <main style={{ background: "#f3f1ec" }}>
       <section
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "1.1fr 0.9fr",
-          gap: "40px",
-          alignItems: "center",
+          minHeight: "92vh",
           position: "relative",
-          zIndex: 1,
+          overflow: "hidden",
+          backgroundImage:
+            "linear-gradient(rgba(7,12,10,0.48), rgba(7,12,10,0.72)), url('/altanika-assets/hero.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          color: "white",
         }}
       >
-        <div>
-          <div
-            style={{
-              display: "inline-block",
-              padding: "8px 14px",
-              border: "1px solid rgba(0,0,0,0.08)",
-              borderRadius: "999px",
-              background: "rgba(255,255,255,0.7)",
-              fontSize: "11px",
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              color: "#666",
-            }}
-          >
-            Luxusný exteriér • návrh • realizácia • servis
-          </div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            style={{
-              fontSize: "72px",
-              lineHeight: "0.95",
-              letterSpacing: "-0.06em",
-              marginTop: "24px",
-              marginBottom: "24px",
-              color: "#0f172a",
-            }}
-          >
-            Exteriéry na kľúč,
-            <br />
-            <span style={{ color: "#4f7d3a" }}>
-              navrhnuté s citom pre priestor.
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            style={{
-              fontSize: "20px",
-              lineHeight: "1.8",
-              color: "#555",
-              maxWidth: "760px",
-            }}
-          >
-            Altanika s.r.o. prepája záhradný dizajn, vizualizácie, realizácie,
-            údržbu, čistenie exteriérov aj remeselné prvky do jedného
-            konzistentného celku.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            style={{ display: "flex", gap: "16px", marginTop: "30px" }}
-          >
-            <button
-              style={{
-                background: "#0f172a",
-                color: "white",
-                border: "none",
-                borderRadius: "999px",
-                padding: "14px 24px",
-                fontSize: "14px",
-                cursor: "pointer",
-              }}
-            >
-              Preskúmať služby
-            </button>
-
-            <button
-              style={{
-                background: "white",
-                color: "#0f172a",
-                border: "1px solid rgba(0,0,0,0.08)",
-                borderRadius: "999px",
-                padding: "14px 24px",
-                fontSize: "14px",
-                cursor: "pointer",
-              }}
-            >
-              Získať návrh
-            </button>
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.9 }}
+        <div
           style={{
-            height: "560px",
-            borderRadius: "36px",
-            background:
-              "radial-gradient(circle at top left, rgba(79,125,58,0.18), transparent 25%), radial-gradient(circle at bottom right, rgba(212,175,55,0.12), transparent 25%), white",
-            border: "1px solid rgba(0,0,0,0.06)",
-            boxShadow: "0 30px 100px rgba(15,23,42,0.08)",
+            maxWidth: "1280px",
+            margin: "0 auto",
+            padding: "32px 56px 56px 56px",
           }}
-        />
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr auto 220px",
+              alignItems: "center",
+              gap: "20px",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+              <img
+                src="/altanika-logo.svg"
+                alt="Altanika logo"
+                style={{
+                  width: "42px",
+                  height: "42px",
+                  objectFit: "contain",
+                  filter: "brightness(1.2)",
+                }}
+              />
+              <div>
+                <div
+                  style={{
+                    fontSize: "34px",
+                    letterSpacing: "0.05em",
+                    fontWeight: 500,
+                    lineHeight: "1",
+                  }}
+                >
+                  ALTANIKA
+                </div>
+                <div
+                  style={{
+                    fontSize: "11px",
+                    letterSpacing: "0.28em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.72)",
+                    marginTop: "4px",
+                  }}
+                >
+                  Exteriéry na kľúč
+                </div>
+              </div>
+            </div>
+
+            <nav
+              style={{
+                display: "flex",
+                gap: "34px",
+                justifyContent: "center",
+                fontSize: "14px",
+                fontWeight: 600,
+                letterSpacing: "0.04em",
+              }}
+            >
+              <a href="#" style={{ color: "white", textDecoration: "none" }}>
+                DOMOV
+              </a>
+              <a href="#sluzby" style={{ color: "white", textDecoration: "none" }}>
+                SLUŽBY
+              </a>
+              <a href="#realizacie" style={{ color: "white", textDecoration: "none" }}>
+                REALIZÁCIE
+              </a>
+              <a href="#onas" style={{ color: "white", textDecoration: "none" }}>
+                O NÁS
+              </a>
+              <a href="#kontakt" style={{ color: "white", textDecoration: "none" }}>
+                KONTAKT
+              </a>
+            </nav>
+
+            <a
+              href="tel:+421918244959"
+              style={{
+                justifySelf: "end",
+                textDecoration: "none",
+                color: "white",
+                border: "1px solid rgba(255,255,255,0.35)",
+                borderRadius: "12px",
+                padding: "14px 18px",
+                fontWeight: 700,
+                fontSize: "15px",
+                background: "rgba(0,0,0,0.18)",
+                backdropFilter: "blur(8px)",
+              }}
+            >
+              +421 918 244 959
+            </a>
+          </motion.div>
+
+          <div style={{ maxWidth: "760px", marginTop: "84px" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.1 }}
+              style={{
+                display: "inline-block",
+                padding: "9px 14px",
+                border: "1px solid rgba(153,196,71,0.45)",
+                borderRadius: "10px",
+                background: "rgba(153,196,71,0.10)",
+                fontSize: "12px",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#a9cf51",
+              }}
+            >
+              Luxusné exteriéry
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 26 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: 0.18 }}
+              style={{
+                fontSize: "84px",
+                lineHeight: "0.96",
+                letterSpacing: "-0.06em",
+                marginTop: "24px",
+                marginBottom: "24px",
+                fontWeight: 600,
+              }}
+            >
+              Exteriéry, ktoré
+              <br />
+              <span style={{ color: "#9ac348" }}>menia životný priestor</span>
+              <br />
+              na zážitok.
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.28 }}
+              style={{
+                fontSize: "22px",
+                lineHeight: "1.7",
+                color: "rgba(255,255,255,0.86)",
+                maxWidth: "700px",
+              }}
+            >
+              Kompletné riešenia exteriérov od návrhu, vizualizácie a realizácie
+              až po údržbu a čistenie. Všetko pod jednou strechou.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.38 }}
+              style={{ display: "flex", gap: "16px", marginTop: "34px" }}
+            >
+              <a
+                href="#sluzby"
+                style={{
+                  textDecoration: "none",
+                  background: "#96bb45",
+                  color: "#10150e",
+                  padding: "18px 24px",
+                  borderRadius: "10px",
+                  fontWeight: 800,
+                  fontSize: "15px",
+                  letterSpacing: "0.03em",
+                }}
+              >
+                POZRIEŤ SLUŽBY →
+              </a>
+              <a
+                href="#kontakt"
+                style={{
+                  textDecoration: "none",
+                  background: "transparent",
+                  color: "white",
+                  padding: "18px 24px",
+                  borderRadius: "10px",
+                  fontWeight: 800,
+                  fontSize: "15px",
+                  letterSpacing: "0.03em",
+                  border: "1px solid rgba(255,255,255,0.34)",
+                }}
+              >
+                ZÍSKAŤ NÁVRH
+              </a>
+            </motion.div>
+
+            <div
+              style={{
+                marginTop: "58px",
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "18px",
+                maxWidth: "980px",
+              }}
+            >
+              {features.map((feature) => (
+                <div
+                  key={feature.title}
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "14px",
+                    background: "rgba(0,0,0,0.16)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    borderRadius: "18px",
+                    padding: "18px",
+                    backdropFilter: "blur(10px)",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      borderRadius: "8px",
+                      border: "1px solid rgba(154,195,72,0.9)",
+                      marginTop: "2px",
+                    }}
+                  />
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: "18px" }}>
+                      {feature.title}
+                    </div>
+                    <div
+                      style={{
+                        marginTop: "4px",
+                        fontSize: "15px",
+                        lineHeight: "1.6",
+                        color: "rgba(255,255,255,0.74)",
+                      }}
+                    >
+                      {feature.text}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       <section
+        id="sluzby"
         style={{
-          maxWidth: "1200px",
-          margin: "80px auto 0 auto",
-          position: "relative",
-          zIndex: 1,
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "82px 56px 0 56px",
         }}
       >
-        <div
-          style={{
-            display: "inline-block",
-            padding: "8px 14px",
-            border: "1px solid rgba(0,0,0,0.08)",
-            borderRadius: "999px",
-            background: "rgba(255,255,255,0.7)",
-            fontSize: "11px",
-            letterSpacing: "0.25em",
-            textTransform: "uppercase",
-            color: "#666",
-          }}
-        >
-          Kompletné portfólio
+        <div style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto" }}>
+          <div
+            style={{
+              fontSize: "12px",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "#7d8668",
+              marginBottom: "14px",
+            }}
+          >
+            Naše služby
+          </div>
+
+          <h2
+            style={{
+              fontSize: "62px",
+              lineHeight: "1",
+              letterSpacing: "-0.05em",
+              color: "#252821",
+              marginBottom: "18px",
+            }}
+          >
+            Kompletné riešenia exteriérov
+          </h2>
+
+          <p
+            style={{
+              fontSize: "20px",
+              lineHeight: "1.8",
+              color: "#666b5f",
+            }}
+          >
+            Od prvého návrhu až po dlhodobú starostlivosť. Vytvárame priestory,
+            ktoré sú krásne, funkčné a nadčasové.
+          </p>
         </div>
 
-        <h2
-          style={{
-            fontSize: "52px",
-            lineHeight: "1",
-            letterSpacing: "-0.05em",
-            marginTop: "20px",
-            marginBottom: "18px",
-            color: "#0f172a",
-          }}
-        >
-          Každá služba má vlastnú kapitolu.
-        </h2>
-
-        <p
-          style={{
-            fontSize: "18px",
-            lineHeight: "1.8",
-            color: "#555",
-            maxWidth: "760px",
-          }}
-        >
-          Web je navrhnutý ako showroom značky Altanika. Jednotlivé profesie sú
-          oddelené tak, aby klient okamžite pochopil rozsah, úroveň aj štýl
-          vašej práce.
-        </p>
-
         <div
           style={{
-            marginTop: "36px",
+            marginTop: "42px",
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "20px",
+            gridTemplateColumns: "repeat(6, 1fr)",
+            gap: "14px",
           }}
         >
           {services.map((service) => (
             <motion.div
               key={service.title}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.2 }}
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.25 }}
               style={{
-                background: "white",
+                background: "#f9f7f2",
+                borderRadius: "20px",
+                overflow: "hidden",
                 border: "1px solid rgba(0,0,0,0.06)",
-                borderRadius: "28px",
-                padding: "24px",
-                boxShadow: "0 12px 40px rgba(15,23,42,0.06)",
+                boxShadow: "0 10px 28px rgba(15,23,42,0.05)",
               }}
             >
               <div
                 style={{
-                  width: "52px",
-                  height: "52px",
-                  borderRadius: "18px",
-                  background: "#f8faf7",
-                  border: "1px solid rgba(0,0,0,0.06)",
-                  marginBottom: "20px",
+                  height: "186px",
+                  backgroundImage: `url('${service.image}')`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
               />
 
-              <h3
-                style={{
-                  fontSize: "28px",
-                  lineHeight: "1.1",
-                  letterSpacing: "-0.04em",
-                  marginBottom: "12px",
-                  color: "#0f172a",
-                }}
-              >
-                {service.title}
-              </h3>
+              <div style={{ padding: "18px 18px 20px 18px" }}>
+                <div
+                  style={{
+                    width: "58px",
+                    height: "58px",
+                    borderRadius: "999px",
+                    background: "#f1efe8",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    margin: "-48px auto 16px auto",
+                    position: "relative",
+                    zIndex: 2,
+                  }}
+                />
 
-              <p
-                style={{
-                  fontSize: "15px",
-                  lineHeight: "1.8",
-                  color: "#555",
-                }}
-              >
-                {service.text}
-              </p>
+                <h3
+                  style={{
+                    textAlign: "center",
+                    fontSize: "19px",
+                    lineHeight: "1.2",
+                    letterSpacing: "-0.03em",
+                    color: "#252821",
+                    marginBottom: "10px",
+                    minHeight: "48px",
+                  }}
+                >
+                  {service.title}
+                </h3>
+
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontSize: "14px",
+                    lineHeight: "1.75",
+                    color: "#666b5f",
+                    minHeight: "98px",
+                  }}
+                >
+                  {service.text}
+                </p>
+
+                <div
+                  style={{
+                    textAlign: "center",
+                    marginTop: "14px",
+                    color: "#748e33",
+                    fontWeight: 800,
+                    fontSize: "13px",
+                    letterSpacing: "0.03em",
+                  }}
+                >
+                  ZISTIŤ VIAC →
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
       </section>
 
       <section
+        id="onas"
         style={{
-          maxWidth: "1200px",
-          margin: "80px auto 0 auto",
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "28px 56px 0 56px",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "24px",
-          position: "relative",
-          zIndex: 1,
+          gridTemplateColumns: "1.5fr 0.9fr",
+          gap: "18px",
         }}
       >
         <div
           style={{
-            background: "white",
+            background:
+              "linear-gradient(90deg, rgba(247,244,237,0.98) 0%, rgba(247,244,237,0.96) 40%, rgba(247,244,237,0.18) 72%), url('/altanika-assets/about-image.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            borderRadius: "24px",
+            minHeight: "420px",
+            padding: "34px",
             border: "1px solid rgba(0,0,0,0.06)",
-            borderRadius: "32px",
-            padding: "32px",
-            boxShadow: "0 12px 40px rgba(15,23,42,0.06)",
+            boxShadow: "0 10px 28px rgba(15,23,42,0.05)",
           }}
         >
           <div
             style={{
-              display: "inline-block",
-              padding: "8px 14px",
-              border: "1px solid rgba(0,0,0,0.08)",
-              borderRadius: "999px",
-              background: "rgba(255,255,255,0.7)",
-              fontSize: "11px",
-              letterSpacing: "0.25em",
+              fontSize: "12px",
+              letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#666",
+              color: "#7d8668",
+              marginBottom: "14px",
             }}
           >
-            Kontakt
+            O Altanika
           </div>
 
           <h2
             style={{
-              fontSize: "48px",
-              lineHeight: "1",
+              fontSize: "58px",
+              lineHeight: "0.98",
               letterSpacing: "-0.05em",
-              marginTop: "20px",
+              color: "#252821",
               marginBottom: "18px",
-              color: "#0f172a",
+              maxWidth: "500px",
             }}
           >
-            Spojme sa.
+            Dizajn, remeslo
+            <br />
+            a vzťah k priestoru.
           </h2>
 
           <p
             style={{
               fontSize: "18px",
               lineHeight: "1.8",
-              color: "#555",
-              maxWidth: "620px",
+              color: "#575d52",
+              maxWidth: "480px",
             }}
           >
-            Či ide o návrh záhrady, realizáciu, údržbu alebo čistenie exteriéru,
-            pripravíme riešenie, ktoré bude pôsobiť hodnotne a profesionálne.
+            Altanika s.r.o. je značka postavená na tom, že exteriér nemá byť len
+            funkčný. Má pôsobiť čisto, hodnotne a prirodzene zapadnúť do života
+            klienta aj architektúry domu.
           </p>
+
+          <div style={{ marginTop: "22px", display: "grid", gap: "10px" }}>
+            {companyPoints.map((item) => (
+              <div
+                key={item}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  color: "#4f564b",
+                  fontSize: "16px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "18px",
+                    height: "18px",
+                    borderRadius: "999px",
+                    border: "1px solid #97b650",
+                  }}
+                />
+                {item}
+              </div>
+            ))}
+          </div>
+
+          <div
+            style={{
+              marginTop: "30px",
+              display: "flex",
+              alignItems: "center",
+              gap: "18px",
+              color: "#4b4f46",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "42px",
+                fontStyle: "italic",
+                lineHeight: "1",
+              }}
+            >
+              Altanika
+            </div>
+            <div>Altanika Team</div>
+          </div>
         </div>
 
         <div
+          id="kontakt"
           style={{
-            background: "#0f172a",
+            background:
+              "linear-gradient(180deg, rgba(42,67,28,0.98), rgba(24,43,18,1))",
             color: "white",
-            borderRadius: "32px",
-            padding: "32px",
-            boxShadow: "0 30px 100px rgba(15,23,42,0.18)",
+            borderRadius: "24px",
+            padding: "34px",
+            boxShadow: "0 18px 50px rgba(15,23,42,0.14)",
           }}
         >
           <div
             style={{
               fontSize: "12px",
-              letterSpacing: "0.25em",
+              letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.45)",
-              marginBottom: "20px",
+              color: "rgba(255,255,255,0.5)",
+              marginBottom: "14px",
             }}
           >
             Priamy kontakt
           </div>
 
-          <div style={{ display: "grid", gap: "16px" }}>
+          <h2
+            style={{
+              fontSize: "60px",
+              lineHeight: "0.94",
+              letterSpacing: "-0.05em",
+              marginBottom: "18px",
+            }}
+          >
+            Sme tu pre
+            <br />
+            Váš projekt
+          </h2>
+
+          <p
+            style={{
+              fontSize: "18px",
+              lineHeight: "1.8",
+              color: "rgba(255,255,255,0.82)",
+              marginBottom: "26px",
+            }}
+          >
+            Ozvite sa nám a spoločne vytvoríme priestor, ktorý Vám bude robiť
+            radosť každý deň.
+          </p>
+
+          <div style={{ display: "grid", gap: "14px" }}>
             <a
               href="tel:+421918244959"
               style={{
-                display: "block",
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.10)",
-                borderRadius: "22px",
-                padding: "18px 20px",
-                color: "white",
                 textDecoration: "none",
+                color: "white",
+                border: "1px solid rgba(255,255,255,0.18)",
+                background: "rgba(255,255,255,0.04)",
+                borderRadius: "14px",
+                padding: "18px 20px",
                 fontSize: "22px",
               }}
             >
@@ -397,13 +639,12 @@ export default function HomePage() {
             <a
               href="mailto:info@altanika.sk"
               style={{
-                display: "block",
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.10)",
-                borderRadius: "22px",
-                padding: "18px 20px",
-                color: "white",
                 textDecoration: "none",
+                color: "white",
+                border: "1px solid rgba(255,255,255,0.18)",
+                background: "rgba(255,255,255,0.04)",
+                borderRadius: "14px",
+                padding: "18px 20px",
                 fontSize: "22px",
               }}
             >
@@ -415,13 +656,12 @@ export default function HomePage() {
               target="_blank"
               rel="noreferrer"
               style={{
-                display: "block",
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.10)",
-                borderRadius: "22px",
-                padding: "18px 20px",
-                color: "white",
                 textDecoration: "none",
+                color: "white",
+                border: "1px solid rgba(255,255,255,0.18)",
+                background: "rgba(255,255,255,0.04)",
+                borderRadius: "14px",
+                padding: "18px 20px",
                 fontSize: "20px",
               }}
             >
@@ -431,22 +671,107 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section
+        id="realizacie"
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "64px 56px 42px 56px",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: "26px" }}>
+          <div
+            style={{
+              fontSize: "12px",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "#7d8668",
+              marginBottom: "12px",
+            }}
+          >
+            Realizácie
+          </div>
+
+          <h2
+            style={{
+              fontSize: "60px",
+              lineHeight: "1",
+              letterSpacing: "-0.05em",
+              color: "#252821",
+              marginBottom: "14px",
+            }}
+          >
+            Priestory, ktoré hovoria za nás
+          </h2>
+
+          <p
+            style={{
+              fontSize: "18px",
+              lineHeight: "1.8",
+              color: "#666b5f",
+            }}
+          >
+            Každý projekt je originál. Každý detail má svoj význam.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(5, 1fr)",
+            gap: "14px",
+          }}
+        >
+          {gallery.map((image, index) => (
+            <div
+              key={index}
+              style={{
+                height: "180px",
+                borderRadius: "16px",
+                backgroundImage: `url('${image}')`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                boxShadow: "0 10px 28px rgba(15,23,42,0.05)",
+              }}
+            />
+          ))}
+        </div>
+
+        <div style={{ textAlign: "center", marginTop: "26px" }}>
+          <a
+            href="#kontakt"
+            style={{
+              display: "inline-block",
+              textDecoration: "none",
+              background: "#89a240",
+              color: "white",
+              padding: "16px 28px",
+              borderRadius: "8px",
+              fontWeight: 800,
+              fontSize: "14px",
+              letterSpacing: "0.03em",
+            }}
+          >
+            ZOBRAZIŤ VIAC REALIZÁCIÍ →
+          </a>
+        </div>
+      </section>
+
       <a
         href="https://wa.me/421918244959"
         target="_blank"
         rel="noreferrer"
         style={{
           position: "fixed",
-          right: "20px",
-          bottom: "20px",
-          background: "white",
-          border: "1px solid rgba(79,125,58,0.20)",
-          borderRadius: "999px",
-          padding: "14px 18px",
+          right: "22px",
+          bottom: "22px",
+          background: "#90a944",
+          color: "white",
           textDecoration: "none",
-          color: "#0f172a",
-          boxShadow: "0 18px 60px rgba(15,23,42,0.12)",
-          fontWeight: 600,
+          borderRadius: "999px",
+          padding: "14px 22px",
+          fontWeight: 800,
+          boxShadow: "0 18px 50px rgba(15,23,42,0.18)",
           zIndex: 100,
         }}
       >
