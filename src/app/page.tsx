@@ -78,6 +78,8 @@ const serviceOptions = [
 
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -85,7 +87,7 @@ export default function HomePage() {
     email: "",
     service: "Vyberte typ služby",
     message: "",
-  });
+});
 
   const isBrowser = typeof window !== "undefined";
   const width = isBrowser ? window.innerWidth : 1400;
@@ -123,26 +125,52 @@ export default function HomePage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-    const selectedService =
-      formData.service === "Vyberte typ služby"
-        ? "Nešpecifikovaná služba"
-        : formData.service;
+  const selectedService =
+    formData.service === "Vyberte typ služby"
+      ? "Nešpecifikovaná služba"
+      : formData.service;
 
-    const subject = encodeURIComponent(`Dopyt z webu Altanika – ${selectedService}`);
-    const body = encodeURIComponent(
-      `Meno a priezvisko: ${formData.name}\n` +
-        `Telefón: ${formData.phone}\n` +
-        `Email: ${formData.email}\n` +
-        `Služba: ${selectedService}\n\n` +
-        `Správa:\n${formData.message}\n\n` +
-        `Poznámka: Každý projekt je individuálny a cenová ponuka sa tvorí na mieru.`
-    );
+  setIsSubmitting(true);
+  setSubmitMessage("");
 
-    window.location.href = `mailto:info@altanika.sk?subject=${subject}&body=${body}`;
-  };
+  try {
+    const response = await fetch("https://formspree.io/f/mgorrlda", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        service: selectedService,
+        message: formData.message,
+        note: "Každý projekt je individuálny a cenová ponuka sa tvorí na mieru.",
+      }),
+    });
+
+    if (response.ok) {
+      setSubmitMessage("Ďakujeme, váš dopyt bol úspešne odoslaný.");
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        service: "Vyberte typ služby",
+        message: "",
+      });
+    } else {
+      setSubmitMessage("Nepodarilo sa odoslať formulár. Skúste to prosím znova.");
+    }
+  } catch (error) {
+    setSubmitMessage("Nepodarilo sa odoslať formulár. Skúste to prosím znova.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <main style={{ background: "#f3f1ec" }}>
@@ -879,8 +907,6 @@ export default function HomePage() {
               color: "rgba(255,255,255,0.76)",
             }}
           >
-            Každý projekt riešime individuálne a cenová ponuka sa vždy tvorí na
-            mieru podľa rozsahu, materiálov a konkrétneho zadania.
           </div>
 
           <form onSubmit={handleSubmit} style={{ display: "grid", gap: "14px" }}>
@@ -987,23 +1013,42 @@ export default function HomePage() {
             </label>
 
             <button
-              type="submit"
-              style={{
-                marginTop: "6px",
-                border: "none",
-                background: "#96bb45",
-                color: "#10150e",
-                padding: "16px 22px",
-                borderRadius: "12px",
-                fontWeight: 800,
-                fontSize: "15px",
-                letterSpacing: "0.03em",
-                cursor: "pointer",
-                boxShadow: "0 12px 30px rgba(150,187,69,0.22)",
-              }}
-            >
-              ODOSLAŤ DOPYT →
-            </button>
+            
+  type="submit"
+  disabled={isSubmitting}
+  style={{
+    marginTop: "6px",
+    border: "none",
+    background: "#96bb45",
+    color: "#10150e",
+    padding: "16px 22px",
+    borderRadius: "12px",
+    fontWeight: 800,
+    fontSize: "15px",
+    letterSpacing: "0.03em",
+    cursor: isSubmitting ? "not-allowed" : "pointer",
+    boxShadow: "0 12px 30px rgba(150,187,69,0.22)",
+    opacity: isSubmitting ? 0.7 : 1,
+  }}
+>
+  {isSubmitting ? "ODOSIELAM..." : "ODOSLAŤ DOPYT →"}
+</button>
+{submitMessage && (
+  <div
+    style={{
+      marginTop: "12px",
+      padding: "12px 14px",
+      borderRadius: "12px",
+      background: "rgba(255,255,255,0.06)",
+      border: "1px solid rgba(255,255,255,0.12)",
+      color: "white",
+      fontSize: "14px",
+      lineHeight: "1.6",
+    }}
+  >
+    {submitMessage}
+  </div>
+)}
           </form>
 
           <div style={{ display: "grid", gap: "14px", marginTop: "24px" }}>
