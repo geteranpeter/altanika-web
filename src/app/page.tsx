@@ -78,8 +78,9 @@ const serviceOptions = [
 
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState("");
+const [isSubmitting, setIsSubmitting] = useState(false);
+const [submitMessage, setSubmitMessage] = useState("");
+const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -154,17 +155,18 @@ export default function HomePage() {
     });
 
     if (response.ok) {
-      setSubmitMessage("Ďakujeme, váš dopyt bol úspešne odoslaný.");
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        service: "Vyberte typ služby",
-        message: "",
-      });
-    } else {
-      setSubmitMessage("Nepodarilo sa odoslať formulár. Skúste to prosím znova.");
-    }
+  setSubmitMessage("Ďakujeme, váš dopyt bol úspešne odoslaný.");
+  setShowSuccessPopup(true);
+  setFormData({
+    name: "",
+    phone: "",
+    email: "",
+    service: "Vyberte typ služby",
+    message: "",
+  });
+} else {
+  setSubmitMessage("Nepodarilo sa odoslať formulár. Skúste to prosím znova.");
+}
   } catch (error) {
     setSubmitMessage("Nepodarilo sa odoslať formulár. Skúste to prosím znova.");
   } finally {
@@ -1082,7 +1084,98 @@ export default function HomePage() {
             >
               info@altanika.sk
             </a>
+{showSuccessPopup && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(5,10,8,0.55)",
+      backdropFilter: "blur(10px)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 200,
+      padding: "20px",
+    }}
+  >
+    <motion.div
+      initial={{ opacity: 0, scale: 0.94, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      style={{
+        width: "100%",
+        maxWidth: "520px",
+        background: "linear-gradient(180deg, #23351a, #182915)",
+        color: "white",
+        borderRadius: "24px",
+        padding: "32px",
+        boxShadow: "0 30px 80px rgba(0,0,0,0.28)",
+        border: "1px solid rgba(255,255,255,0.08)",
+        textAlign: "center",
+      }}
+    >
+      <div
+        style={{
+          width: "72px",
+          height: "72px",
+          margin: "0 auto 20px auto",
+          borderRadius: "999px",
+          background: "rgba(166,214,79,0.14)",
+          border: "1px solid rgba(166,214,79,0.3)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "30px",
+          color: "#a6d64f",
+        }}
+      >
+        ✓
+      </div>
 
+      <h3
+        style={{
+          fontSize: "36px",
+          lineHeight: "1",
+          letterSpacing: "-0.04em",
+          marginBottom: "14px",
+          marginTop: 0,
+        }}
+      >
+        Dopyt bol odoslaný
+      </h3>
+
+      <p
+        style={{
+          fontSize: "17px",
+          lineHeight: "1.8",
+          color: "rgba(255,255,255,0.82)",
+          marginBottom: "24px",
+        }}
+      >
+        Ďakujeme za váš záujem. Čoskoro sa vám ozveme a pripravíme ďalší postup
+        podľa vašich požiadaviek.
+      </p>
+
+      <button
+        onClick={() => setShowSuccessPopup(false)}
+        style={{
+          border: "none",
+          background: "#96bb45",
+          color: "#10150e",
+          padding: "14px 24px",
+          borderRadius: "12px",
+          fontWeight: 800,
+          fontSize: "15px",
+          letterSpacing: "0.03em",
+          cursor: "pointer",
+          boxShadow: "0 12px 30px rgba(150,187,69,0.22)",
+        }}
+      >
+        ZATVORIŤ
+      </button>
+    </motion.div>
+  </div>
+)}
             <a
               href="https://wa.me/421918244959"
               target="_blank"

@@ -3,7 +3,7 @@ import "./globals.css";
 import Footer from "../components/footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://altanika-web.vercel.app"),
+  metadataBase: new URL("https://altanika.sk"),
   title: "Altanika s.r.o. | Záhradný dizajn, realizácie a exteriéry na kľúč",
   description:
     "Altanika s.r.o. prináša záhradný dizajn, projektovanie exteriéru, vizualizácie, realizácie, údržbu, čistenie exteriérov, terasy, altánky, zámkové dlažby, zrezávanie stromov a exteriéry na kľúč.",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: "Altanika s.r.o. | Exteriéry na kľúč",
     description:
       "Prémiové riešenia pre záhrady a exteriéry: návrh, vizualizácia, realizácia, údržba, čistenie a remeselné prvky pod jednou strechou.",
-    url: "https://altanika-web.vercel.app",
+    url: "https://altanika.sk",
     siteName: "Altanika s.r.o.",
     locale: "sk_SK",
     type: "website",
