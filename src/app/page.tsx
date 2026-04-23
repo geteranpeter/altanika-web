@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const services = [
   {
@@ -57,6 +58,14 @@ const companyPoints = [
 ];
 
 export default function HomePage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    service: "Záhradný dizajn",
+    message: "",
+  });
+
   const isBrowser = typeof window !== "undefined";
   const width = isBrowser ? window.innerWidth : 1400;
   const isMobile = width < 768;
@@ -66,6 +75,48 @@ export default function HomePage() {
   const heroTitleSize = isMobile ? "42px" : isTablet ? "58px" : "84px";
   const sectionTitleSize = isMobile ? "34px" : isTablet ? "46px" : "62px";
   const contactTitleSize = isMobile ? "38px" : isTablet ? "46px" : "60px";
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    borderRadius: "14px",
+    border: "1px solid rgba(255,255,255,0.14)",
+    background: "rgba(255,255,255,0.05)",
+    color: "white",
+    padding: "16px 18px",
+    fontSize: "15px",
+    outline: "none",
+    boxSizing: "border-box",
+  };
+
+  const labelStyle: React.CSSProperties = {
+    display: "grid",
+    gap: "8px",
+    fontSize: "14px",
+    color: "rgba(255,255,255,0.8)",
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const subject = encodeURIComponent(`Dopyt z webu Altanika – ${formData.service}`);
+    const body = encodeURIComponent(
+      `Meno a priezvisko: ${formData.name}\n` +
+        `Telefón: ${formData.phone}\n` +
+        `Email: ${formData.email}\n` +
+        `Služba: ${formData.service}\n\n` +
+        `Správa:\n${formData.message}\n\n` +
+        `Poznámka: Každý projekt je individuálny a cenová ponuka sa tvorí na mieru.`
+    );
+
+    window.location.href = `mailto:info@altanika.sk?subject=${subject}&body=${body}`;
+  };
 
   return (
     <main style={{ background: "#f3f1ec" }}>
@@ -667,14 +718,128 @@ export default function HomePage() {
               fontSize: "18px",
               lineHeight: "1.8",
               color: "rgba(255,255,255,0.82)",
-              marginBottom: "26px",
+              marginBottom: "18px",
             }}
           >
             Ozvite sa nám a spoločne vytvoríme priestor, ktorý Vám bude robiť
             radosť každý deň.
           </p>
 
-          <div style={{ display: "grid", gap: "14px" }}>
+          <div
+            style={{
+              marginBottom: "24px",
+              padding: "14px 16px",
+              borderRadius: "14px",
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.10)",
+              fontSize: "14px",
+              lineHeight: "1.75",
+              color: "rgba(255,255,255,0.76)",
+            }}
+          >
+            Každý projekt riešime individuálne a cenová ponuka sa vždy tvorí na
+            mieru podľa rozsahu, materiálov a konkrétneho zadania.
+          </div>
+
+          <form onSubmit={handleSubmit} style={{ display: "grid", gap: "14px" }}>
+            <label style={labelStyle}>
+              Meno a priezvisko
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder="Vaše meno"
+                style={inputStyle}
+              />
+            </label>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+                gap: "14px",
+              }}
+            >
+              <label style={labelStyle}>
+                Telefón
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="+421..."
+                  style={inputStyle}
+                />
+              </label>
+
+              <label style={labelStyle}>
+                Email
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="vas@email.sk"
+                  style={inputStyle}
+                />
+              </label>
+            </div>
+
+            <label style={labelStyle}>
+              O akú službu ide
+              <select
+                name="service"
+                value={formData.service}
+                onChange={handleChange}
+                style={inputStyle}
+              >
+                <option>Záhradný dizajn</option>
+                <option>Vizualizácie</option>
+                <option>Realizácie</option>
+                <option>Údržba</option>
+                <option>Čistenie exteriérov</option>
+                <option>Terasy a stavby</option>
+              </select>
+            </label>
+
+            <label style={labelStyle}>
+              Správa
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                placeholder="Napíšte nám, čo plánujete..."
+                rows={6}
+                style={{ ...inputStyle, resize: "vertical" }}
+              />
+            </label>
+
+            <button
+              type="submit"
+              style={{
+                marginTop: "6px",
+                border: "none",
+                background: "#96bb45",
+                color: "#10150e",
+                padding: "16px 22px",
+                borderRadius: "12px",
+                fontWeight: 800,
+                fontSize: "15px",
+                letterSpacing: "0.03em",
+                cursor: "pointer",
+                boxShadow: "0 12px 30px rgba(150,187,69,0.22)",
+              }}
+            >
+              ODOSLAŤ DOPYT →
+            </button>
+          </form>
+
+          <div style={{ display: "grid", gap: "14px", marginTop: "24px" }}>
             <a
               href="tel:+421918244959"
               style={{
