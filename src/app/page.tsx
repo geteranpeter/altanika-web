@@ -44,18 +44,9 @@ const gallery = [
 ];
 
 const features = [
-  {
-    title: "Komplexné služby",
-    text: "Všetko pod jednou strechou",
-  },
-  {
-    title: "Prémiový dizajn",
-    text: "Estetika, funkčnosť, detail",
-  },
-  {
-    title: "Dlhodobá starostlivosť",
-    text: "Údržba, servis, čistenie",
-  },
+  { title: "Komplexné služby", text: "Všetko pod jednou strechou" },
+  { title: "Prémiový dizajn", text: "Estetika, funkčnosť, detail" },
+  { title: "Dlhodobá starostlivosť", text: "Údržba, servis, čistenie" },
 ];
 
 const companyPoints = [
@@ -66,11 +57,21 @@ const companyPoints = [
 ];
 
 export default function HomePage() {
+  const isBrowser = typeof window !== "undefined";
+  const width = isBrowser ? window.innerWidth : 1400;
+  const isMobile = width < 768;
+  const isTablet = width >= 768 && width < 1100;
+
+  const pagePadding = isMobile ? "16px" : isTablet ? "28px" : "56px";
+  const heroTitleSize = isMobile ? "42px" : isTablet ? "58px" : "84px";
+  const sectionTitleSize = isMobile ? "34px" : isTablet ? "46px" : "62px";
+  const contactTitleSize = isMobile ? "38px" : isTablet ? "46px" : "60px";
+
   return (
     <main style={{ background: "#f3f1ec" }}>
       <section
         style={{
-          minHeight: "92vh",
+          minHeight: isMobile ? "auto" : "92vh",
           position: "relative",
           overflow: "hidden",
           backgroundImage:
@@ -85,8 +86,8 @@ export default function HomePage() {
             position: "absolute",
             top: "-200px",
             left: "-200px",
-            width: "500px",
-            height: "500px",
+            width: isMobile ? "280px" : "500px",
+            height: isMobile ? "280px" : "500px",
             background: "rgba(154,195,72,0.12)",
             filter: "blur(120px)",
             borderRadius: "50%",
@@ -100,7 +101,7 @@ export default function HomePage() {
             zIndex: 1,
             maxWidth: "1280px",
             margin: "0 auto",
-            padding: "20px 56px 56px 56px",
+            padding: `20px ${pagePadding} 56px ${pagePadding}`,
           }}
         >
           <motion.div
@@ -112,10 +113,10 @@ export default function HomePage() {
               top: "0",
               zIndex: 100,
               display: "grid",
-              gridTemplateColumns: "1fr auto 220px",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr auto 220px",
               alignItems: "center",
               gap: "20px",
-              padding: "14px 24px",
+              padding: isMobile ? "14px 16px" : "14px 24px",
               borderRadius: "16px",
               background: "rgba(10,15,12,0.35)",
               backdropFilter: "blur(12px)",
@@ -127,8 +128,8 @@ export default function HomePage() {
                 src="/altanika-logo.svg"
                 alt="Altanika logo"
                 style={{
-                  width: "42px",
-                  height: "42px",
+                  width: isMobile ? "36px" : "42px",
+                  height: isMobile ? "36px" : "42px",
                   objectFit: "contain",
                   filter: "brightness(1.2)",
                 }}
@@ -136,7 +137,7 @@ export default function HomePage() {
               <div>
                 <div
                   style={{
-                    fontSize: "34px",
+                    fontSize: isMobile ? "24px" : "34px",
                     letterSpacing: "0.05em",
                     fontWeight: 500,
                     lineHeight: "1",
@@ -147,7 +148,7 @@ export default function HomePage() {
                 <div
                   style={{
                     fontSize: "11px",
-                    letterSpacing: "0.28em",
+                    letterSpacing: "0.22em",
                     textTransform: "uppercase",
                     color: "rgba(255,255,255,0.72)",
                     marginTop: "4px",
@@ -158,53 +159,57 @@ export default function HomePage() {
               </div>
             </div>
 
-            <nav
-              style={{
-                display: "flex",
-                gap: "34px",
-                justifyContent: "center",
-                fontSize: "14px",
-                fontWeight: 600,
-                letterSpacing: "0.04em",
-              }}
-            >
-              <a href="#" style={{ color: "white", textDecoration: "none" }}>
-                DOMOV
-              </a>
-              <a href="#sluzby" style={{ color: "white", textDecoration: "none" }}>
-                SLUŽBY
-              </a>
-              <a href="#realizacie" style={{ color: "white", textDecoration: "none" }}>
-                REALIZÁCIE
-              </a>
-              <a href="#onas" style={{ color: "white", textDecoration: "none" }}>
-                O NÁS
-              </a>
-              <a href="#kontakt" style={{ color: "white", textDecoration: "none" }}>
-                KONTAKT
-              </a>
-            </nav>
+            {!isMobile && (
+              <nav
+                style={{
+                  display: "flex",
+                  gap: isTablet ? "18px" : "34px",
+                  justifyContent: "center",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  letterSpacing: "0.04em",
+                }}
+              >
+                <a href="#" style={{ color: "white", textDecoration: "none" }}>
+                  DOMOV
+                </a>
+                <a href="#sluzby" style={{ color: "white", textDecoration: "none" }}>
+                  SLUŽBY
+                </a>
+                <a href="#realizacie" style={{ color: "white", textDecoration: "none" }}>
+                  REALIZÁCIE
+                </a>
+                <a href="#onas" style={{ color: "white", textDecoration: "none" }}>
+                  O NÁS
+                </a>
+                <a href="#kontakt" style={{ color: "white", textDecoration: "none" }}>
+                  KONTAKT
+                </a>
+              </nav>
+            )}
 
-            <a
-              href="tel:+421918244959"
-              style={{
-                justifySelf: "end",
-                textDecoration: "none",
-                color: "white",
-                border: "1px solid rgba(255,255,255,0.35)",
-                borderRadius: "12px",
-                padding: "14px 18px",
-                fontWeight: 700,
-                fontSize: "15px",
-                background: "rgba(0,0,0,0.18)",
-                backdropFilter: "blur(8px)",
-              }}
-            >
-              +421 918 244 959
-            </a>
+            {!isMobile && (
+              <a
+                href="tel:+421918244959"
+                style={{
+                  justifySelf: "end",
+                  textDecoration: "none",
+                  color: "white",
+                  border: "1px solid rgba(255,255,255,0.35)",
+                  borderRadius: "12px",
+                  padding: "14px 18px",
+                  fontWeight: 700,
+                  fontSize: "15px",
+                  background: "rgba(0,0,0,0.18)",
+                  backdropFilter: "blur(8px)",
+                }}
+              >
+                +421 918 244 959
+              </a>
+            )}
           </motion.div>
 
-          <div style={{ maxWidth: "760px", marginTop: "84px" }}>
+          <div style={{ maxWidth: "760px", marginTop: isMobile ? "42px" : "84px" }}>
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -229,7 +234,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, delay: 0.18 }}
               style={{
-                fontSize: "84px",
+                fontSize: heroTitleSize,
                 lineHeight: "0.96",
                 letterSpacing: "-0.06em",
                 marginTop: "24px",
@@ -249,7 +254,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.28 }}
               style={{
-                fontSize: "22px",
+                fontSize: isMobile ? "18px" : "22px",
                 lineHeight: "1.7",
                 color: "rgba(255,255,255,0.86)",
                 maxWidth: "700px",
@@ -263,7 +268,12 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.38 }}
-              style={{ display: "flex", gap: "16px", marginTop: "34px" }}
+              style={{
+                display: "flex",
+                gap: "16px",
+                marginTop: "34px",
+                flexDirection: isMobile ? "column" : "row",
+              }}
             >
               <a
                 href="#sluzby"
@@ -278,12 +288,7 @@ export default function HomePage() {
                   letterSpacing: "0.03em",
                   transition: "0.3s",
                   display: "inline-block",
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.transform = "scale(1.05)";
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
+                  textAlign: "center",
                 }}
               >
                 POZRIEŤ SLUŽBY →
@@ -303,12 +308,7 @@ export default function HomePage() {
                   border: "1px solid rgba(255,255,255,0.34)",
                   transition: "0.3s",
                   display: "inline-block",
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.transform = "scale(1.05)";
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
+                  textAlign: "center",
                 }}
               >
                 ZÍSKAŤ NÁVRH
@@ -319,7 +319,7 @@ export default function HomePage() {
               style={{
                 marginTop: "58px",
                 display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
+                gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
                 gap: "18px",
                 maxWidth: "980px",
               }}
@@ -345,6 +345,7 @@ export default function HomePage() {
                       borderRadius: "8px",
                       border: "1px solid rgba(166,214,79,0.95)",
                       marginTop: "2px",
+                      flexShrink: 0,
                     }}
                   />
                   <div>
@@ -374,7 +375,7 @@ export default function HomePage() {
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: "82px 56px 0 56px",
+          padding: `82px ${pagePadding} 0 ${pagePadding}`,
         }}
       >
         <div style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto" }}>
@@ -392,7 +393,7 @@ export default function HomePage() {
 
           <h2
             style={{
-              fontSize: "62px",
+              fontSize: sectionTitleSize,
               lineHeight: "1",
               letterSpacing: "-0.05em",
               color: "#252821",
@@ -404,7 +405,7 @@ export default function HomePage() {
 
           <p
             style={{
-              fontSize: "20px",
+              fontSize: isMobile ? "17px" : "20px",
               lineHeight: "1.8",
               color: "#666b5f",
             }}
@@ -418,8 +419,12 @@ export default function HomePage() {
           style={{
             marginTop: "42px",
             display: "grid",
-            gridTemplateColumns: "repeat(6, 1fr)",
-            gap: "14px",
+            gridTemplateColumns: isMobile
+              ? "1fr"
+              : isTablet
+              ? "repeat(2, 1fr)"
+              : "repeat(3, 1fr)",
+            gap: "18px",
           }}
         >
           {services.map((service) => (
@@ -437,7 +442,7 @@ export default function HomePage() {
             >
               <div
                 style={{
-                  height: "186px",
+                  height: "220px",
                   backgroundImage: `url('${service.image}')`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
@@ -461,12 +466,11 @@ export default function HomePage() {
                 <h3
                   style={{
                     textAlign: "center",
-                    fontSize: "19px",
+                    fontSize: "24px",
                     lineHeight: "1.2",
                     letterSpacing: "-0.03em",
                     color: "#252821",
                     marginBottom: "10px",
-                    minHeight: "48px",
                   }}
                 >
                   {service.title}
@@ -478,7 +482,6 @@ export default function HomePage() {
                     fontSize: "14px",
                     lineHeight: "1.75",
                     color: "#666b5f",
-                    minHeight: "98px",
                   }}
                 >
                   {service.text}
@@ -507,9 +510,9 @@ export default function HomePage() {
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: "28px 56px 0 56px",
+          padding: `28px ${pagePadding} 0 ${pagePadding}`,
           display: "grid",
-          gridTemplateColumns: "1.5fr 0.9fr",
+          gridTemplateColumns: isMobile ? "1fr" : "1.5fr 0.9fr",
           gap: "18px",
         }}
       >
@@ -520,7 +523,7 @@ export default function HomePage() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             borderRadius: "24px",
-            minHeight: "420px",
+            minHeight: isMobile ? "auto" : "420px",
             padding: "34px",
             border: "1px solid rgba(0,0,0,0.06)",
             boxShadow: "0 10px 28px rgba(15,23,42,0.05)",
@@ -540,7 +543,7 @@ export default function HomePage() {
 
           <h2
             style={{
-              fontSize: "58px",
+              fontSize: isMobile ? "36px" : "58px",
               lineHeight: "0.98",
               letterSpacing: "-0.05em",
               color: "#252821",
@@ -584,32 +587,12 @@ export default function HomePage() {
                     height: "18px",
                     borderRadius: "999px",
                     border: "1px solid #97b650",
+                    flexShrink: 0,
                   }}
                 />
                 {item}
               </div>
             ))}
-          </div>
-
-          <div
-            style={{
-              marginTop: "30px",
-              display: "flex",
-              alignItems: "center",
-              gap: "18px",
-              color: "#4b4f46",
-            }}
-          >
-            <div
-              style={{
-                fontSize: "42px",
-                fontStyle: "italic",
-                lineHeight: "1",
-              }}
-            >
-              Altanika
-            </div>
-            <div>Altanika Team</div>
           </div>
         </div>
 
@@ -638,7 +621,7 @@ export default function HomePage() {
 
           <h2
             style={{
-              fontSize: "60px",
+              fontSize: contactTitleSize,
               lineHeight: "0.94",
               letterSpacing: "-0.05em",
               marginBottom: "18px",
@@ -671,7 +654,7 @@ export default function HomePage() {
                 background: "rgba(255,255,255,0.04)",
                 borderRadius: "14px",
                 padding: "18px 20px",
-                fontSize: "22px",
+                fontSize: isMobile ? "18px" : "22px",
               }}
             >
               +421 918 244 959
@@ -686,7 +669,8 @@ export default function HomePage() {
                 background: "rgba(255,255,255,0.04)",
                 borderRadius: "14px",
                 padding: "18px 20px",
-                fontSize: "22px",
+                fontSize: isMobile ? "18px" : "22px",
+                wordBreak: "break-word",
               }}
             >
               info@altanika.sk
@@ -703,7 +687,7 @@ export default function HomePage() {
                 background: "rgba(255,255,255,0.04)",
                 borderRadius: "14px",
                 padding: "18px 20px",
-                fontSize: "20px",
+                fontSize: isMobile ? "17px" : "20px",
               }}
             >
               WhatsApp kontakt
@@ -717,7 +701,7 @@ export default function HomePage() {
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: "64px 56px 42px 56px",
+          padding: `64px ${pagePadding} 42px ${pagePadding}`,
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "26px" }}>
@@ -735,7 +719,7 @@ export default function HomePage() {
 
           <h2
             style={{
-              fontSize: "60px",
+              fontSize: isMobile ? "36px" : "60px",
               lineHeight: "1",
               letterSpacing: "-0.05em",
               color: "#252821",
@@ -759,7 +743,11 @@ export default function HomePage() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(5, 1fr)",
+            gridTemplateColumns: isMobile
+              ? "1fr"
+              : isTablet
+              ? "repeat(2, 1fr)"
+              : "repeat(5, 1fr)",
             gap: "14px",
           }}
         >
@@ -767,7 +755,7 @@ export default function HomePage() {
             <div
               key={index}
               style={{
-                height: "180px",
+                height: isMobile ? "220px" : "180px",
                 borderRadius: "16px",
                 backgroundImage: `url('${image}')`,
                 backgroundSize: "cover",
@@ -810,10 +798,11 @@ export default function HomePage() {
           color: "white",
           textDecoration: "none",
           borderRadius: "999px",
-          padding: "14px 22px",
+          padding: isMobile ? "12px 18px" : "14px 22px",
           fontWeight: 800,
           boxShadow: "0 18px 50px rgba(15,23,42,0.18)",
           zIndex: 100,
+          fontSize: isMobile ? "14px" : "16px",
         }}
       >
         WhatsApp
