@@ -77,6 +77,8 @@ const serviceOptions = [
 ];
 
 export default function HomePage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -187,100 +189,216 @@ export default function HomePage() {
               position: "sticky",
               top: "0",
               zIndex: 100,
-              display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "1fr auto 220px",
-              alignItems: "center",
-              gap: "20px",
-              padding: isMobile ? "14px 16px" : "14px 24px",
+              padding: isMobile ? "12px 14px" : "14px 24px",
               borderRadius: "16px",
               background: "rgba(10,15,12,0.35)",
               backdropFilter: "blur(12px)",
               border: "1px solid rgba(255,255,255,0.08)",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-              <img
-                src="/altanika-logo.svg"
-                alt="Altanika logo"
-                style={{
-                  width: isMobile ? "36px" : "42px",
-                  height: isMobile ? "36px" : "42px",
-                  objectFit: "contain",
-                  filter: "brightness(1.2)",
-                }}
-              />
-              <div>
-                <div
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "1fr auto" : "1fr auto 220px",
+                alignItems: "center",
+                gap: "20px",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                <img
+                  src="/altanika-logo.svg"
+                  alt="Altanika logo"
                   style={{
-                    fontSize: isMobile ? "24px" : "34px",
-                    letterSpacing: "0.05em",
-                    fontWeight: 500,
-                    lineHeight: "1",
+                    width: isMobile ? "36px" : "42px",
+                    height: isMobile ? "36px" : "42px",
+                    objectFit: "contain",
+                    filter: "brightness(1.2)",
+                  }}
+                />
+                <div>
+                  <div
+                    style={{
+                      fontSize: isMobile ? "24px" : "34px",
+                      letterSpacing: "0.05em",
+                      fontWeight: 500,
+                      lineHeight: "1",
+                    }}
+                  >
+                    ALTANIKA
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "11px",
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      color: "rgba(255,255,255,0.72)",
+                      marginTop: "4px",
+                    }}
+                  >
+                    Exteriéry na kľúč
+                  </div>
+                </div>
+              </div>
+
+              {isMobile ? (
+                <button
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  aria-label="Otvoriť menu"
+                  style={{
+                    border: "1px solid rgba(255,255,255,0.16)",
+                    background: "rgba(255,255,255,0.06)",
+                    color: "white",
+                    borderRadius: "12px",
+                    width: "48px",
+                    height: "48px",
+                    fontSize: "22px",
+                    cursor: "pointer",
                   }}
                 >
-                  ALTANIKA
-                </div>
-                <div
+                  {menuOpen ? "×" : "☰"}
+                </button>
+              ) : (
+                <>
+                  <nav
+                    style={{
+                      display: "flex",
+                      gap: isTablet ? "18px" : "34px",
+                      justifyContent: "center",
+                      fontSize: "14px",
+                      fontWeight: 600,
+                      letterSpacing: "0.04em",
+                    }}
+                  >
+                    <a href="#" style={{ color: "white", textDecoration: "none" }}>
+                      DOMOV
+                    </a>
+                    <a href="#sluzby" style={{ color: "white", textDecoration: "none" }}>
+                      SLUŽBY
+                    </a>
+                    <a href="#realizacie" style={{ color: "white", textDecoration: "none" }}>
+                      REALIZÁCIE
+                    </a>
+                    <a href="#onas" style={{ color: "white", textDecoration: "none" }}>
+                      O NÁS
+                    </a>
+                    <a href="#kontakt" style={{ color: "white", textDecoration: "none" }}>
+                      KONTAKT
+                    </a>
+                  </nav>
+
+                  <a
+                    href="tel:+421918244959"
+                    style={{
+                      justifySelf: "end",
+                      textDecoration: "none",
+                      color: "white",
+                      border: "1px solid rgba(255,255,255,0.35)",
+                      borderRadius: "12px",
+                      padding: "14px 18px",
+                      fontWeight: 700,
+                      fontSize: "15px",
+                      background: "rgba(0,0,0,0.18)",
+                      backdropFilter: "blur(8px)",
+                    }}
+                  >
+                    +421 918 244 959
+                  </a>
+                </>
+              )}
+            </div>
+
+            {isMobile && menuOpen && (
+              <div
+                style={{
+                  marginTop: "14px",
+                  display: "grid",
+                  gap: "10px",
+                  paddingTop: "14px",
+                  borderTop: "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                <a
+                  href="#"
+                  onClick={() => setMenuOpen(false)}
                   style={{
-                    fontSize: "11px",
-                    letterSpacing: "0.22em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.72)",
+                    color: "white",
+                    textDecoration: "none",
+                    padding: "12px 8px",
+                    borderRadius: "10px",
+                    background: "rgba(255,255,255,0.04)",
+                  }}
+                >
+                  DOMOV
+                </a>
+                <a
+                  href="#sluzby"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    padding: "12px 8px",
+                    borderRadius: "10px",
+                    background: "rgba(255,255,255,0.04)",
+                  }}
+                >
+                  SLUŽBY
+                </a>
+                <a
+                  href="#realizacie"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    padding: "12px 8px",
+                    borderRadius: "10px",
+                    background: "rgba(255,255,255,0.04)",
+                  }}
+                >
+                  REALIZÁCIE
+                </a>
+                <a
+                  href="#onas"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    padding: "12px 8px",
+                    borderRadius: "10px",
+                    background: "rgba(255,255,255,0.04)",
+                  }}
+                >
+                  O NÁS
+                </a>
+                <a
+                  href="#kontakt"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    padding: "12px 8px",
+                    borderRadius: "10px",
+                    background: "rgba(255,255,255,0.04)",
+                  }}
+                >
+                  KONTAKT
+                </a>
+                <a
+                  href="tel:+421918244959"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    padding: "14px 16px",
+                    borderRadius: "12px",
+                    background: "rgba(150,187,69,0.18)",
+                    border: "1px solid rgba(166,214,79,0.22)",
+                    fontWeight: 700,
+                    textAlign: "center",
                     marginTop: "4px",
                   }}
                 >
-                  Exteriéry na kľúč
-                </div>
+                  +421 918 244 959
+                </a>
               </div>
-            </div>
-
-            {!isMobile && (
-              <nav
-                style={{
-                  display: "flex",
-                  gap: isTablet ? "18px" : "34px",
-                  justifyContent: "center",
-                  fontSize: "14px",
-                  fontWeight: 600,
-                  letterSpacing: "0.04em",
-                }}
-              >
-                <a href="#" style={{ color: "white", textDecoration: "none" }}>
-                  DOMOV
-                </a>
-                <a href="#sluzby" style={{ color: "white", textDecoration: "none" }}>
-                  SLUŽBY
-                </a>
-                <a href="#realizacie" style={{ color: "white", textDecoration: "none" }}>
-                  REALIZÁCIE
-                </a>
-                <a href="#onas" style={{ color: "white", textDecoration: "none" }}>
-                  O NÁS
-                </a>
-                <a href="#kontakt" style={{ color: "white", textDecoration: "none" }}>
-                  KONTAKT
-                </a>
-              </nav>
-            )}
-
-            {!isMobile && (
-              <a
-                href="tel:+421918244959"
-                style={{
-                  justifySelf: "end",
-                  textDecoration: "none",
-                  color: "white",
-                  border: "1px solid rgba(255,255,255,0.35)",
-                  borderRadius: "12px",
-                  padding: "14px 18px",
-                  fontWeight: 700,
-                  fontSize: "15px",
-                  background: "rgba(0,0,0,0.18)",
-                  backdropFilter: "blur(8px)",
-                }}
-              >
-                +421 918 244 959
-              </a>
             )}
           </motion.div>
 
