@@ -74,7 +74,7 @@ export default function HomePage() {
           position: "relative",
           overflow: "hidden",
           backgroundImage:
-            "linear-gradient(rgba(7,12,10,0.48), rgba(7,12,10,0.72)), url('/altanika-assets/hero.jpg')",
+            "linear-gradient(rgba(5,10,8,0.55), rgba(5,10,8,0.85)), url('/altanika-assets/hero-clean.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           color: "white",
@@ -82,9 +82,25 @@ export default function HomePage() {
       >
         <div
           style={{
+            position: "absolute",
+            top: "-200px",
+            left: "-200px",
+            width: "500px",
+            height: "500px",
+            background: "rgba(154,195,72,0.12)",
+            filter: "blur(120px)",
+            borderRadius: "50%",
+            zIndex: 0,
+          }}
+        />
+
+        <div
+          style={{
+            position: "relative",
+            zIndex: 1,
             maxWidth: "1280px",
             margin: "0 auto",
-            padding: "32px 56px 56px 56px",
+            padding: "20px 56px 56px 56px",
           }}
         >
           <motion.div
@@ -92,10 +108,18 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             style={{
+              position: "sticky",
+              top: "0",
+              zIndex: 100,
               display: "grid",
               gridTemplateColumns: "1fr auto 220px",
               alignItems: "center",
               gap: "20px",
+              padding: "14px 24px",
+              borderRadius: "16px",
+              background: "rgba(10,15,12,0.35)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255,255,255,0.08)",
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
@@ -188,13 +212,13 @@ export default function HomePage() {
               style={{
                 display: "inline-block",
                 padding: "9px 14px",
-                border: "1px solid rgba(153,196,71,0.45)",
+                border: "1px solid rgba(166,214,79,0.45)",
                 borderRadius: "10px",
-                background: "rgba(153,196,71,0.10)",
+                background: "rgba(166,214,79,0.10)",
                 fontSize: "12px",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#a9cf51",
+                color: "#a6d64f",
               }}
             >
               Luxusné exteriéry
@@ -215,7 +239,7 @@ export default function HomePage() {
             >
               Exteriéry, ktoré
               <br />
-              <span style={{ color: "#9ac348" }}>menia životný priestor</span>
+              <span style={{ color: "#a6d64f" }}>menia životný priestor</span>
               <br />
               na zážitok.
             </motion.h1>
@@ -252,10 +276,19 @@ export default function HomePage() {
                   fontWeight: 800,
                   fontSize: "15px",
                   letterSpacing: "0.03em",
+                  transition: "0.3s",
+                  display: "inline-block",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = "scale(1.05)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
                 }}
               >
                 POZRIEŤ SLUŽBY →
               </a>
+
               <a
                 href="#kontakt"
                 style={{
@@ -268,6 +301,14 @@ export default function HomePage() {
                   fontSize: "15px",
                   letterSpacing: "0.03em",
                   border: "1px solid rgba(255,255,255,0.34)",
+                  transition: "0.3s",
+                  display: "inline-block",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = "scale(1.05)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
                 }}
               >
                 ZÍSKAŤ NÁVRH
@@ -302,7 +343,7 @@ export default function HomePage() {
                       width: "24px",
                       height: "24px",
                       borderRadius: "8px",
-                      border: "1px solid rgba(154,195,72,0.9)",
+                      border: "1px solid rgba(166,214,79,0.95)",
                       marginTop: "2px",
                     }}
                   />
