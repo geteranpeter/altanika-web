@@ -71,7 +71,7 @@ export default function HomePage() {
     <main style={{ background: "#f3f1ec" }}>
       <section
         style={{
-          minHeight: isMobile ? "auto" : "92vh",
+          minHeight: "92vh",
           position: "relative",
           overflow: "hidden",
           backgroundImage:
@@ -101,7 +101,7 @@ export default function HomePage() {
             zIndex: 1,
             maxWidth: "1280px",
             margin: "0 auto",
-            padding: `20px ${pagePadding} 56px ${pagePadding}`,
+            padding: `20px ${pagePadding} 72px ${pagePadding}`,
           }}
         >
           <motion.div
@@ -209,7 +209,7 @@ export default function HomePage() {
             )}
           </motion.div>
 
-          <div style={{ maxWidth: "760px", marginTop: isMobile ? "42px" : "84px" }}>
+          <div style={{ maxWidth: "760px", marginTop: isMobile ? "52px" : "96px" }}>
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
@@ -289,6 +289,7 @@ export default function HomePage() {
                   transition: "0.3s",
                   display: "inline-block",
                   textAlign: "center",
+                  boxShadow: "0 12px 30px rgba(0,0,0,0.18)",
                 }}
               >
                 POZRIEŤ SLUŽBY →
@@ -375,7 +376,7 @@ export default function HomePage() {
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: `82px ${pagePadding} 0 ${pagePadding}`,
+          padding: `100px ${pagePadding} 0 ${pagePadding}`,
         }}
       >
         <div style={{ textAlign: "center", maxWidth: "780px", margin: "0 auto" }}>
@@ -417,60 +418,66 @@ export default function HomePage() {
 
         <div
           style={{
-            marginTop: "42px",
+            marginTop: "48px",
             display: "grid",
             gridTemplateColumns: isMobile
               ? "1fr"
               : isTablet
               ? "repeat(2, 1fr)"
               : "repeat(3, 1fr)",
-            gap: "18px",
+            gap: "24px",
           }}
         >
           {services.map((service) => (
             <motion.div
               key={service.title}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -10 }}
               transition={{ duration: 0.25 }}
               style={{
                 background: "#f9f7f2",
-                borderRadius: "20px",
+                borderRadius: "24px",
                 overflow: "hidden",
                 border: "1px solid rgba(0,0,0,0.06)",
-                boxShadow: "0 10px 28px rgba(15,23,42,0.05)",
+                boxShadow: "0 14px 36px rgba(15,23,42,0.06)",
+                display: "flex",
+                flexDirection: "column",
               }}
             >
               <div
                 style={{
-                  height: "220px",
-                  backgroundImage: `url('${service.image}')`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
+                  height: isMobile ? "240px" : "260px",
+                  overflow: "hidden",
                 }}
-              />
-
-              <div style={{ padding: "18px 18px 20px 18px" }}>
-                <div
+              >
+                <motion.div
+                  whileHover={{ scale: 1.06 }}
+                  transition={{ duration: 0.45 }}
                   style={{
-                    width: "58px",
-                    height: "58px",
-                    borderRadius: "999px",
-                    background: "#f1efe8",
-                    border: "1px solid rgba(0,0,0,0.06)",
-                    margin: "-48px auto 16px auto",
-                    position: "relative",
-                    zIndex: 2,
+                    height: "100%",
+                    width: "100%",
+                    backgroundImage: `url('${service.image}')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                   }}
                 />
+              </div>
 
+              <div
+                style={{
+                  padding: isMobile ? "22px 18px" : "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "14px",
+                  flex: 1,
+                }}
+              >
                 <h3
                   style={{
-                    textAlign: "center",
-                    fontSize: "24px",
-                    lineHeight: "1.2",
-                    letterSpacing: "-0.03em",
+                    fontSize: isMobile ? "26px" : "30px",
+                    lineHeight: "1.12",
+                    letterSpacing: "-0.04em",
                     color: "#252821",
-                    marginBottom: "10px",
+                    margin: 0,
                   }}
                 >
                   {service.title}
@@ -478,10 +485,10 @@ export default function HomePage() {
 
                 <p
                   style={{
-                    textAlign: "center",
-                    fontSize: "14px",
-                    lineHeight: "1.75",
+                    fontSize: "15px",
+                    lineHeight: "1.85",
                     color: "#666b5f",
+                    margin: 0,
                   }}
                 >
                   {service.text}
@@ -489,15 +496,38 @@ export default function HomePage() {
 
                 <div
                   style={{
-                    textAlign: "center",
-                    marginTop: "14px",
-                    color: "#748e33",
-                    fontWeight: 800,
-                    fontSize: "13px",
-                    letterSpacing: "0.03em",
+                    padding: "14px 16px",
+                    borderRadius: "14px",
+                    background: "#f2efe7",
+                    border: "1px solid rgba(0,0,0,0.05)",
+                    fontSize: "14px",
+                    lineHeight: "1.75",
+                    color: "#5b6055",
                   }}
                 >
-                  ZISTIŤ VIAC →
+                  Každý projekt je ojedinelý a cenová ponuka sa vždy vytvára na
+                  mieru podľa rozsahu, materiálov a konkrétnych požiadaviek
+                  klienta.
+                </div>
+
+                <div style={{ marginTop: "auto", paddingTop: "6px" }}>
+                  <a
+                    href="#kontakt"
+                    style={{
+                      display: "inline-block",
+                      textDecoration: "none",
+                      background: "#89a240",
+                      color: "white",
+                      padding: "14px 20px",
+                      borderRadius: "10px",
+                      fontWeight: 800,
+                      fontSize: "14px",
+                      letterSpacing: "0.03em",
+                      boxShadow: "0 10px 24px rgba(137,162,64,0.22)",
+                    }}
+                  >
+                    ZISTIŤ VIAC →
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -510,10 +540,10 @@ export default function HomePage() {
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: `28px ${pagePadding} 0 ${pagePadding}`,
+          padding: `36px ${pagePadding} 0 ${pagePadding}`,
           display: "grid",
           gridTemplateColumns: isMobile ? "1fr" : "1.5fr 0.9fr",
-          gap: "18px",
+          gap: "20px",
         }}
       >
         <div
@@ -524,7 +554,7 @@ export default function HomePage() {
             backgroundPosition: "center",
             borderRadius: "24px",
             minHeight: isMobile ? "auto" : "420px",
-            padding: "34px",
+            padding: isMobile ? "24px" : "34px",
             border: "1px solid rgba(0,0,0,0.06)",
             boxShadow: "0 10px 28px rgba(15,23,42,0.05)",
           }}
@@ -603,7 +633,7 @@ export default function HomePage() {
               "linear-gradient(180deg, rgba(42,67,28,0.98), rgba(24,43,18,1))",
             color: "white",
             borderRadius: "24px",
-            padding: "34px",
+            padding: isMobile ? "24px" : "34px",
             boxShadow: "0 18px 50px rgba(15,23,42,0.14)",
           }}
         >
@@ -701,10 +731,10 @@ export default function HomePage() {
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: `64px ${pagePadding} 42px ${pagePadding}`,
+          padding: `80px ${pagePadding} 48px ${pagePadding}`,
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: "26px" }}>
+        <div style={{ textAlign: "center", marginBottom: "30px" }}>
           <div
             style={{
               fontSize: "12px",
@@ -748,25 +778,35 @@ export default function HomePage() {
               : isTablet
               ? "repeat(2, 1fr)"
               : "repeat(5, 1fr)",
-            gap: "14px",
+            gap: "16px",
           }}
         >
           {gallery.map((image, index) => (
             <div
               key={index}
               style={{
-                height: isMobile ? "220px" : "180px",
-                borderRadius: "16px",
-                backgroundImage: `url('${image}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
+                height: isMobile ? "220px" : "190px",
+                borderRadius: "18px",
+                overflow: "hidden",
                 boxShadow: "0 10px 28px rgba(15,23,42,0.05)",
               }}
-            />
+            >
+              <motion.div
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 0.45 }}
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  backgroundImage: `url('${image}')`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              />
+            </div>
           ))}
         </div>
 
-        <div style={{ textAlign: "center", marginTop: "26px" }}>
+        <div style={{ textAlign: "center", marginTop: "30px" }}>
           <a
             href="#kontakt"
             style={{
@@ -775,10 +815,11 @@ export default function HomePage() {
               background: "#89a240",
               color: "white",
               padding: "16px 28px",
-              borderRadius: "8px",
+              borderRadius: "10px",
               fontWeight: 800,
               fontSize: "14px",
               letterSpacing: "0.03em",
+              boxShadow: "0 10px 24px rgba(137,162,64,0.22)",
             }}
           >
             ZOBRAZIŤ VIAC REALIZÁCIÍ →
