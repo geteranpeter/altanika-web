@@ -57,12 +57,31 @@ const companyPoints = [
   "Používame prémiové materiály a technológie",
 ];
 
+const serviceOptions = [
+  "Vyberte typ služby",
+  "Záhradný dizajn",
+  "Projektovanie exteriéru",
+  "Vizualizácie",
+  "Realizácia záhrady",
+  "Realizácia exteriéru na kľúč",
+  "Údržba záhrad",
+  "Čistenie exteriérov",
+  "Čistenie striech a fasád",
+  "Čistenie solárnych a fotovoltických panelov",
+  "Terasy a altánky",
+  "Zámkové dlažby",
+  "Ohniská a betónové prvky",
+  "Zrezávanie stromov",
+  "Pilčícke úkony",
+  "Individuálna požiadavka",
+];
+
 export default function HomePage() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
-    service: "Záhradný dizajn",
+    service: "Vyberte typ služby",
     message: "",
   });
 
@@ -80,7 +99,7 @@ export default function HomePage() {
     width: "100%",
     borderRadius: "14px",
     border: "1px solid rgba(255,255,255,0.14)",
-    background: "rgba(255,255,255,0.05)",
+    background: "rgba(255,255,255,0.08)",
     color: "white",
     padding: "16px 18px",
     fontSize: "15px",
@@ -105,12 +124,17 @@ export default function HomePage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const subject = encodeURIComponent(`Dopyt z webu Altanika – ${formData.service}`);
+    const selectedService =
+      formData.service === "Vyberte typ služby"
+        ? "Nešpecifikovaná služba"
+        : formData.service;
+
+    const subject = encodeURIComponent(`Dopyt z webu Altanika – ${selectedService}`);
     const body = encodeURIComponent(
       `Meno a priezvisko: ${formData.name}\n` +
         `Telefón: ${formData.phone}\n` +
         `Email: ${formData.email}\n` +
-        `Služba: ${formData.service}\n\n` +
+        `Služba: ${selectedService}\n\n` +
         `Správa:\n${formData.message}\n\n` +
         `Poznámka: Každý projekt je individuálny a cenová ponuka sa tvorí na mieru.`
     );
@@ -791,19 +815,44 @@ export default function HomePage() {
 
             <label style={labelStyle}>
               O akú službu ide
-              <select
-                name="service"
-                value={formData.service}
-                onChange={handleChange}
-                style={inputStyle}
-              >
-                <option>Záhradný dizajn</option>
-                <option>Vizualizácie</option>
-                <option>Realizácie</option>
-                <option>Údržba</option>
-                <option>Čistenie exteriérov</option>
-                <option>Terasy a stavby</option>
-              </select>
+              <div style={{ position: "relative" }}>
+                <select
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  style={{
+                    ...inputStyle,
+                    appearance: "none",
+                    WebkitAppearance: "none",
+                    MozAppearance: "none",
+                    paddingRight: "52px",
+                    cursor: "pointer",
+                    background:
+                      "linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05))",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)",
+                  }}
+                >
+                  {serviceOptions.map((option) => (
+                    <option key={option} value={option} style={{ color: "#10150e" }}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+
+                <div
+                  style={{
+                    position: "absolute",
+                    right: "18px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    pointerEvents: "none",
+                    color: "rgba(255,255,255,0.78)",
+                    fontSize: "14px",
+                  }}
+                >
+                  ▼
+                </div>
+              </div>
             </label>
 
             <label style={labelStyle}>
